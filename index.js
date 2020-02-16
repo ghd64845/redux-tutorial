@@ -19,10 +19,11 @@ const initialSwitch = {
 };
 
 function reducer(state = initialSwitch, action) {
+  //action.type에 따라 다른 작업을 처리
   switch (action.type) {
     case TOGGLE_SWITCH:
       return {
-        ...state,
+        ...state, // 불변성 유지
         toggle: !state.toggle
       };
     case INCREASE:
@@ -43,7 +44,8 @@ function reducer(state = initialSwitch, action) {
 const store = createStore(reducer);
 
 const render = () => {
-  const state = store.getState();
+  const state = store.getState(); // 현재 상태를 불러온다.
+  // 토글 처리
   if (state.toggle) {
     divToggle.classList.add("active");
   } else {
